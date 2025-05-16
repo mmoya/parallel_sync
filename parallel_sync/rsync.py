@@ -149,8 +149,8 @@ def __get_transfer_commands(creds: Credential, upstream: bool,
     @additional_params: str. You can pass additional rsync parameters. The default is just '-c'
     returns a list of commands to be run locally
     """
-    rsync = f"rsync {additional_params} -e 'ssh -i {creds.key_filename}' "\
-        "-o StrictHostKeyChecking=no -o ServerAliveInterval=100"
+    rsync = f"rsync {additional_params} -e 'ssh -i {creds.key_filename} -p {creds.port} "\
+        "-o StrictHostKeyChecking=no -o ServerAliveInterval=100'"
 
     cmds = []
     for src, dst in paths:
